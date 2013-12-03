@@ -80,12 +80,18 @@
         </p>
         <h2>How it should work</h2>
         <p>
-          After you install Git for Windows you get all of those handy Git shortcuts in your context menu
-          whenever you click on a folder.
-          <img />
+          After you install Git for Windows you get all of those handy Git shortcuts in your context menu whenever you click on a folder.
+        </p>
+        <figure>
+          <img src="img/GitBashContextMenu.png" alt="GitBash shortcut in the Context Menu"/>
+        </figure>
+        <p>
           Unsurprisingly clicking on Git Bash opens a Git Bash terminal window at your current location
           and you're free to start Git'ing.
         </p>
+        <figure>
+          <img src="img/GitBash.png" alt="GitBash shortcut in the Context Menu"/>
+        </figure>
         <p>
           As far as authentication goes my expectation would be that I'd probably have to enter my details
           once per session. E.G. When I do my first push after opening the terminal window. After that they
@@ -117,11 +123,11 @@
         <p>
           So HTTPS appears to be a dead-end and after my best attempts to Google a solution I found nothing
           that suggests otherwise. What about SSH?
+        </p>
         <p>
           SSH is the solution to our problem. It does suffer from the same password caching problem
           that HTTPS does (you have to enter your passphrase every time) however this is can fixed.
           Multiple accounts aren't supported "out of the box" but again this is something that can be fixed.
-        </p>
         </p>
         <h2>Setting up SSH for Multiple Accounts</h2>
         <p>
@@ -295,14 +301,18 @@ ECHO ""</code>
           What is our workflow now?
         </p>
         <p>
-          Main User Repo - First Run:          
-          <img/>
-          <br>
-          <br>
+          Main User Repo - First Run:
+        </p>
+        <figure>
+          <img src="img/GitBashFixedMyRepoFirstRun.png" alt="GitBash shortcut in the Context Menu"/>
+        </figure>
+        <p>
           Main User Repo - Subsequent Runs:
-          <img/>
-          <br>
-          <br>
+        </p>
+        <figure>
+          <img src="img/GitBashFixedMyRepoSubsequent.png" alt="GitBash shortcut in the Context Menu"/>
+        </figure>
+        <p>
           Perfect! No Need to enter any values. The only time we have to specify the key file to use is the first time we open the terminal for a repo. The only time we have to enter the passphase is the first time we run we open the terminal for a "session". Technically a session is the lifetime of ssh-agent process. This process gets started by our script if it's not already running and remains open until forcibly closed.</p>
         </p>
         <p>
@@ -310,16 +320,20 @@ ECHO ""</code>
         </p>
         <p>
           Other User Repo - First Run:
-          <img/>
-          <br>
-          <br>
+        </p>
+        <figure>
+          <img src="img/GitBashFixedMyOtherUsersRepoFirstRun.png" alt="GitBash shortcut in the Context Menu"/>
+        </figure>
+        <p>
           Other User Repo - Subsequent Runs:
-          <br>
-          <br>
+        </p>
+        <figure>
+          <img src="img/GitBashFixedMyOtherUsersRepoSubsequent.png" alt="GitBash shortcut in the Context Menu"/>
+        </figure>
+        <p>
           Same as above. Perfect. We finally have a good multiple user Git setup for Windows.
         </p>
       </article>
-      </p>
     </section>
     </div>
       <div class="one columns push_two">
