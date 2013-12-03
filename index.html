@@ -59,36 +59,27 @@
     </div>
   </div>
   <section>
-    <div class="row">
-      <section class="twelve columns">
-        <h1>Nothing is ever simple; Multiple GitHub accounts on Windows</h1>
-      </section>
+    <div style="background:lightgrey;">
+      <div class="row">
+        <section class="twelve columns">
+          <h1>Nothing is ever simple; Multiple GitHub accounts on Windows</h1>
+        </section>
+      </div>
+      <hr/>
     </div>
     <div class="row">    
       <section class="three columns">
         <nav id="sidebar-nav-holder" class="vertical-nav" gumby-fixed="top">
           <ul id="sidebar-nav" style="padding-top:20px;">
-              <li class="active">
-                <a href="#tldr" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='tldr']">TL;DR</a>
-              </li>
-              <li>
-                <a href="#intro" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='intro']">Introduction</a>
-              </li>            
-              <li>
-                <a href="#skip-links" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='skip-links']">How it should work</a>
-              </li>           
-              <li>
-                <a href="#fixed-positions" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='fixed-positions']">How it actually works</a>
-              </li>            
-              <li>
-                <a href="#vertical-alignment" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='vertical-alignment']">Setting up SSH</a>
-              </li>
-              <li>
-                <a href="#retina-images" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='retina-images']">Remembering the passphrase</a>
-              </li>
-              <li>
-                <a href="#sowhat" class="skip" gumby-update gumby-duration="600" gumby-goto="[data-target='sowhat']">So What?</a>
-              </li>
+            <li>
+              <p class="skiplink medium primary active"><a href="#tldr" gumby-goto="[data-target='tldr']">TL;DR</a></p>              
+            </li>
+            <li>
+              <p class="skiplink medium primary"><a href="#intro" gumby-goto="[data-target='intro']">Introduction</a></p>              
+            </li>
+            <li>
+              <p class="skiplink medium primary"><a href="#sowhat" gumby-goto="[data-target='sowhat']">So What?</a></p>              
+            </li>
           </ul>
         </nav>
       </section>
@@ -139,7 +130,7 @@
             GitHub recommends you use HTTPS. What happens when you do a push when using HTTPS? 
             You'll get prompted to enter a user name and password everything time you
             do a push (unless you've already modified your setup). No Thanks.
-          <p>
+          </p>
           <p>
             GitHub provides two <a href="https://help.github.com/articles/set-up-git#password-caching">solutions</a>       
             to this problem:
@@ -327,7 +318,8 @@
           </pre>
           <br/>
           <p>
-            The original script relies on the default key name (id_rsa). The modified script looks for a <b>KEY</b> file in the .git folder of the curent repository. This file contains the name of the ssh key file which the repo should use. E.G id_rsa_MyOtherUserName. If the KEY file doesn't exist it will prompt you to create it. After this you'll be prompted for the passphrase and it will last for the session.</p>
+            The original script relies on the default key name (id_rsa). The modified script looks for a <b>KEY</b> file in the .git folder of the curent repository. This file contains the name of the ssh key file which the repo should use. E.G id_rsa_MyOtherUserName. If the KEY file doesn't exist it will prompt you to create it. After this you'll be prompted for the passphrase and it will last for the session.
+          </p>
           <p>
             The script needs to go in your .bashrc file which exists under the bash home directory which is usually your user directory. E.G.
             <pre><code class="language-bash">C:\Users\Name\.bashrc</code></pre>
