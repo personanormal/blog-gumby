@@ -71,25 +71,37 @@
       <section class="three columns">
         <nav id="sidebar-nav-holder" class="vertical-nav" gumby-fixed="top">
           <ul id="sidebar-nav" style="padding-top:20px;">
-            <li>
-              <p class="skiplink medium primary active"><a href="#tldr" gumby-goto="[data-target='tldr']">TL;DR</a></p>              
+            <li class="active">
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='tldr']">TL;DR</a></p>              
             </li>
             <li>
-              <p class="skiplink medium primary"><a href="#intro" gumby-goto="[data-target='intro']">Introduction</a></p>              
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='intro']">Introduction</a></p>              
             </li>
             <li>
-              <p class="skiplink medium primary"><a href="#sowhat" gumby-goto="[data-target='sowhat']">So What?</a></p>              
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='shouldwork']">How it should work</a></p>              
+            </li>
+            <li>
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='actuallyworks']">How it actually works</a></p>              
+            </li>
+            <li>
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='ssh']">Setting up SSH</a></p>              
+            </li>
+            <li>
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='passphrase']">Remembering the pass</a></p>              
+            </li>
+            <li>
+              <p class="skiplink medium primary"><a href="#" gumby-goto="[data-target='sowhat']">So What?</a></p>              
             </li>
           </ul>
         </nav>
       </section>
       <section class="eight columns">
         <article>
-          <h2 id="tldr">TL;DR</h2>
+          <h2 id="tldr" data-target="tldr">TL;DR</h2>
           <p>
             Placeholder
           </p>
-          <h2 id="intro">Introduction</h2>
+          <h2 id="intro" data-target="intro">Introduction</h2>
           <p>
             Being primarily a .NET developer I've come to rely on the 
             <a href="http://visualstudiogallery.msdn.microsoft.com/abafc7d6-dcaa-40f4-8a5e-d6724bdb980c">
@@ -106,7 +118,7 @@
             As the title of this post suggests I want to be able to use multiple
             GitHub accounts. Also as the title suggests, this isn't simple.
           </p>
-          <h2>How it should work</h2>
+          <h2 id="shouldwork" data-target="shouldwork">How it should work</h2>
           <p>
             After you install Git for Windows you get all of those handy Git shortcuts in your context menu whenever you click on a folder.
           </p>
@@ -125,7 +137,7 @@
             once per session. E.G. When I do my first push after opening the terminal window. After that they
             should be remembered for the life of the terminal window.
           </p>
-          <h2>How it actually works</h2>
+          <h2 id="actuallyworks" data-target="actuallyworks">How it actually works</h2>
           <p>        
             GitHub recommends you use HTTPS. What happens when you do a push when using HTTPS? 
             You'll get prompted to enter a user name and password everything time you
@@ -157,7 +169,7 @@
             that HTTPS does (you have to enter your passphrase every time) however this is can fixed.
             Multiple accounts aren't supported "out of the box" but again this is something that can be fixed.
           </p>
-          <h2>Setting up SSH</h2>
+          <h2 id="ssh" data-target="ssh">Setting up SSH</h2>
           <p>
             If you're in the situation where your repositories are all set up to use HTTPS, changing them to use
             SSH is pretty straight forward:
@@ -209,7 +221,7 @@
             </ol>
             We should now be at the stage where we can push to either of our repos via SSH. However we still need to enter the passphrase each time.
           </p>
-          <h2>Remembering the passphrase</h2>
+          <h2 id="passphrase" data-target="passphrase">Remembering the passphrase</h2>
           <p>
             GitHub provides a <a href="https://help.github.com/articles/working-with-ssh-key-passphrases">guide</a> on how to to use ssh-agent to remember the passphrase. It also provides a script which you need to use to achieve this. The problem with the script is that it doesn't handle multiple accounts, however it's a good starting point for our modified script:
           </p>
@@ -325,7 +337,7 @@
             <pre><code class="language-bash">C:\Users\Name\.bashrc</code></pre>
             If you need to double check the directory just enter "~" into the bash terminal.
           </p>
-          <h2 id="sowhat">So What?</h2>
+          <h2 id="sowhat" data-target="sowhat">So What?</h2>
           <p>
             What is our workflow now?
           </p>
