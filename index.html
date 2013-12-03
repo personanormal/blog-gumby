@@ -135,12 +135,8 @@
           GitHub provides the instructions for steps 1 and 2 
           <a href="https://help.github.com/articles/generating-ssh-keys">here.</a>
           <br>
-          <br>
           For step 3 the command you need to use is:
-          <br>
-          <blockquote>
-          git remote set-url origin git@github.com:user/repo.git
-          </blockquote>
+          <pre><code class="language-bash">git remote set-url origin git@github.com:user/repo.git</code></pre>
           These instructions can be followed verbatim <b>for your main GitHub account</b> (it doesn't
           really matter which GitHub account you use here, but for the any subsequent accounts that we set
           up the process is a bit different).
@@ -155,36 +151,26 @@
         </p>
         <p>
           Setting up our SSH for our other account is a bit different. When you follow the previous instruction you end up with an id_rsa key in your .ssh folder (usually C:\Users\Name\.ssh). This means we need to generate a key with a different name, which is easy enough. We then need to provide a way for Git to be able to work out which key is the correct one to use. I could go into more detail on this but fortunately someone else has written a <a href="http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/">tutorial</a> about how you set all this up. Unfortunately this wasn't written with Windows in mind so in step 2 when we are instructed to run the following command:
-          <br>
-          <blockquote>
-            ssh-add ~/.ssh/id_rsa_MyOtherUserName
-          </blockquote>
+          <pre><code class="language-bash">ssh-add ~/.ssh/id_rsa_MyOtherUserName</code></pre>
           We'll get an error. This is ok, we can deal with that later. I really recommend reading the tutorial but in summary, here's what you need to do:
           <ol>
             <li>Generate an SSH key with a different filename E.G. id_rsa_MyOtherUserName</li>
             <li>Set the SSH key for your other GitHub account on GitHub.com</li>
             <li>Create a <b>config</b> file in your .ssh directory which contains the following:
-            <br>
-            <br>
-            #Default GitHub<br>
-            Host github.com
-            <blockquote>
-              HostName github.com<br>
-              User git<br>
-              IdentityFile ~/.ssh/id_rsa<br>
-            </blockquote>
-            #My other GitHub account<br>
-            Host github-<b>MyOtherUserName</b>
-            <blockquote>
-              HostName github.com<br>
-              User git<br>
-              IdentityFile ~/.ssh/id_rsa_<b>MyOtherUserName</b><br>
-             </blockquote>
+            <pre><code class="language-bash">#Default GitHub            
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa
+
+#My other GitHub account
+  Host github-MyOtherUserName
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_MyOtherUserName</code></pre>
             </li>       
             <li>Change the remote url:
-              <blockquote>
-                git remote set-url origin git@<b>github-MyOtherUserName:MyOtherUserName</b>/repo.git
-              </blockquote>
+             <pre><code class="language-bash">git remote set-url origin git@github-MyOtherUserName:MyOtherUserName/repo.git</code></pre>
             </li>
           </ol>
           We should now be at the stage where we can push to either of our repos via SSH. However we still need to enter the passphrase each time.
@@ -301,9 +287,7 @@ ECHO ""</code>
           The original script relies on the default key name (id_rsa). The modified script looks for a <b>KEY</b> file in the .git folder of the curent repository. This file contains the name of the ssh key file which the repo should use. E.G id_rsa_MyOtherUserName. If the KEY file doesn't exist it will prompt you to create it. After this you'll be prompted for the passphrase and it will last for the session.</p>
         <p>
           The script needs to go in your .bashrc file which exists under the bash home directory which is usually your user directory. E.G.
-          <blockquote>
-            C:\Users\Name\.bashrc
-          </blockquote>
+          <pre><code class="language-bash">C:\Users\Name\.bashrc</code></pre>
           If you need to double check the directory just enter "~" into the bash terminal.
         </p>
         <h2>So What?</h2>
@@ -335,8 +319,8 @@ ECHO ""</code>
           Same as above. Perfect. We finally have a good multiple user Git setup for Windows.
         </p>
       </article>
-    </section>
       </p>
+    </section>
     </div>
     <div class="one columns push_two">
       <div gumby-fixed="top">
