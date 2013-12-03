@@ -193,109 +193,109 @@
         <p>
           GitHub provides a <a href="https://help.github.com/articles/working-with-ssh-key-passphrases">guide</a> on how to to use ssh-agent to remember the passphrase. It also provides a script which you need to use to achieve this. The problem with the script is that it doesn't handle multiple accounts, however it's a good starting point for our modified script.
         </p>
-        <pre>
-          <code>
-            #! /bin/bash
+        <pre style="max-height:30em; overflow:auto;">
+          <code class="language-bash">
+#! /bin/bash
 
-            ECHO ""
-            ECHO "### SSH AGENT SCRIPT START ###"
-            ECHO ""
+ECHO ""
+ECHO "### SSH AGENT SCRIPT START ###"
+ECHO ""
 
-            # Note: ~/.ssh/environment should not be used, as it
-            #     already has a different purpose in SSH.
+# Note: ~/.ssh/environment should not be used, as it
+#     already has a different purpose in SSH.
 
-            env=~/.ssh/agent.env
+env=~/.ssh/agent.env
 
-            # Note: Don't bother checking SSH_AGENT_PID. It's not used
-            #     by SSH itself, and it might even be incorrect
-            #     for example, when using agent-forwarding over SSH).
+# Note: Don't bother checking SSH_AGENT_PID. It's not used
+#     by SSH itself, and it might even be incorrect
+#     for example, when using agent-forwarding over SSH).
 
-            add_key_from_keyfile(){
-              KEYFILE="/.git/KEY"
-              KEYPATH=$PWD$KEYFILE
+add_key_from_keyfile(){
+  KEYFILE="/.git/KEY"
+  KEYPATH=$PWD$KEYFILE
 
-              if [ -f $KEYPATH ]
-                then
-                  ECHO "# Key file found at $KEYPATH"
-                  ECHO ""
-                  KEYVAL=`cat $KEYPATH`
-                  add_key $KEYVAL			
-                else
-                  ECHO "No Key file found at $KEYPATH. Creating new"
-                  ECHO "Enter Key"
-                  READ KEYIN
-                  
-                  if [ -z $KEYIN ]
-                    then
-                      ECHO "# No Key value read"
-                      ECHO ""
-                      ECHO "# DONE"
-                    else
-                      ECHO $KEYIN > $KEYPATH
-                      add_key $KEYIN
-                  fi
-              fi
-            }
+  if [ -f $KEYPATH ]
+    then
+      ECHO "# Key file found at $KEYPATH"
+      ECHO ""
+      KEYVAL=`cat $KEYPATH`
+      add_key $KEYVAL			
+    else
+      ECHO "No Key file found at $KEYPATH. Creating new"
+      ECHO "Enter Key"
+      READ KEYIN
+      
+      if [ -z $KEYIN ]
+        then
+          ECHO "# No Key value read"
+          ECHO ""
+          ECHO "# DONE"
+        else
+          ECHO $KEYIN > $KEYPATH
+          add_key $KEYIN
+      fi
+  fi
+}
 
-            add_key(){
-              if [ -z $1 ]
-                then	
-                  ECHO "# No Key value read"
-                  ECHO ""
-                  ECHO "# DONE"
-                else
-                  ECHO "# Key value is $1"
-                  #ECHO ""
-                  ECHO "# Adding Key"
-                  ECHO ""
-                  ssh-add ~/.ssh/$1
-                  ECHO ""
-                  ECHO "DONE"	
-              fi
+add_key(){
+  if [ -z $1 ]
+    then	
+      ECHO "# No Key value read"
+      ECHO ""
+      ECHO "# DONE"
+    else
+      ECHO "# Key value is $1"
+      #ECHO ""
+      ECHO "# Adding Key"
+      ECHO ""
+      ssh-add ~/.ssh/$1
+      ECHO ""
+      ECHO "DONE"	
+  fi
 
-            }
+}
 
-            agent_is_running() {
-                if [ "$SSH_AUTH_SOCK" ]; then
-                    # ssh-add returns:
-                    #   0 = agent running, has keys
-                    #   1 = agent running, no keys
-                    #   2 = agent not running
-                    ssh-add -l >/dev/null 2>&1 || [ $? -eq 1 ]
-                else
-                    false
-                fi
-            }
+agent_is_running() {
+    if [ "$SSH_AUTH_SOCK" ]; then
+        # ssh-add returns:
+        #   0 = agent running, has keys
+        #   1 = agent running, no keys
+        #   2 = agent not running
+        ssh-add -l >/dev/null 2>&1 || [ $? -eq 1 ]
+    else
+        false
+    fi
+}
 
-            agent_has_keys() {
-                ssh-add -l >/dev/null 2>&1
-            }
+agent_has_keys() {
+    ssh-add -l >/dev/null 2>&1
+}
 
-            agent_load_env() {
-                . "$env" >/dev/null
-            }
+agent_load_env() {
+    . "$env" >/dev/null
+}
 
-            agent_start() {
-                (umask 077; ssh-agent >"$env")
-                . "$env" >/dev/null
-            }
+agent_start() {
+    (umask 077; ssh-agent >"$env")
+    . "$env" >/dev/null
+}
 
-            if ! agent_is_running; then
-                agent_load_env
-            fi
+if ! agent_is_running; then
+    agent_load_env
+fi
 
-            if ! agent_is_running; then
-                agent_start
-                add_key_from_keyfile
-            elif ! agent_has_keys; then
-                add_key_from_keyfile
-            fi
+if ! agent_is_running; then
+    agent_start
+    add_key_from_keyfile
+elif ! agent_has_keys; then
+    add_key_from_keyfile
+fi
 
-            unset env
+unset env
 
-            ECHO ""
-            ECHO "### SSH AGENT SCRIPT END ###"
-            ECHO ""
+ECHO ""
+ECHO "### SSH AGENT SCRIPT END ###"
+ECHO ""
           </code>
         </pre>
         <p>
