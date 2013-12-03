@@ -194,11 +194,10 @@
           GitHub provides a <a href="https://help.github.com/articles/working-with-ssh-key-passphrases">guide</a> on how to to use ssh-agent to remember the passphrase. It also provides a script which you need to use to achieve this. The problem with the script is that it doesn't handle multiple accounts, however it's a good starting point for our modified script.
         </p>
         <pre style="max-height:30em; overflow:auto;">
-          <code class="language-bash">
-#! /bin/bash
+<code class="language-bash">#! /bin/bash
 
 ECHO ""
-ECHO "### SSH AGENT SCRIPT START ###"
+ECHO "--- SSH AGENT SCRIPT START ---"
 ECHO ""
 
 # Note: ~/.ssh/environment should not be used, as it
@@ -216,7 +215,7 @@ add_key_from_keyfile(){
 
   if [ -f $KEYPATH ]
     then
-      ECHO "# Key file found at $KEYPATH"
+      ECHO "@ Key file found at $KEYPATH"
       ECHO ""
       KEYVAL=`cat $KEYPATH`
       add_key $KEYVAL			
@@ -227,9 +226,9 @@ add_key_from_keyfile(){
       
       if [ -z $KEYIN ]
         then
-          ECHO "# No Key value read"
+          ECHO "@ No Key value read"
           ECHO ""
-          ECHO "# DONE"
+          ECHO "@ DONE"
         else
           ECHO $KEYIN > $KEYPATH
           add_key $KEYIN
@@ -240,17 +239,17 @@ add_key_from_keyfile(){
 add_key(){
   if [ -z $1 ]
     then	
-      ECHO "# No Key value read"
+      ECHO "@ No Key value read"
       ECHO ""
-      ECHO "# DONE"
+      ECHO "@ DONE"
     else
-      ECHO "# Key value is $1"
-      #ECHO ""
-      ECHO "# Adding Key"
+      ECHO "@ Key value is $1"
+      ECHO ""
+      ECHO "@ Adding Key"
       ECHO ""
       ssh-add ~/.ssh/$1
       ECHO ""
-      ECHO "DONE"	
+      ECHO "@ DONE"	
   fi
 
 }
@@ -294,10 +293,10 @@ fi
 unset env
 
 ECHO ""
-ECHO "### SSH AGENT SCRIPT END ###"
-ECHO ""
-          </code>
+ECHO "--- SSH AGENT SCRIPT END ---"
+ECHO ""</code>
         </pre>
+        <br/>
         <p>
           The original script relies on the default key name (id_rsa). The modified script looks for a <b>KEY</b> file in the .git folder of the curent repository. This file contains the name of the ssh key file which the repo should use. E.G id_rsa_MyOtherUserName. If the KEY file doesn't exist it will prompt you to create it. After this you'll be prompted for the passphrase and it will last for the session.</p>
         <p>
