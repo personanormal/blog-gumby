@@ -22,8 +22,6 @@ add_key_from_keyfile(){
 			echo "@ Key file found at $KEYPATH"
 			echo ""
 			KEYVAL=`cat $KEYPATH`
-			echo $KEYVAL
-			echo ""
 			add_key $KEYVAL			
 		else
 			echo "No Key file found at $KEYPATH. Creating new"
