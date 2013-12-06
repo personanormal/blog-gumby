@@ -1,1 +1,17 @@
-// Your custom SCSS should be written here...
+#sidebar-nav li.active a {
+  color: #fff;
+  background: #3085d6;
+}
+#sidebar-nav li.active a:hover {
+  background: #3085d6;
+}
+
+#sidebar-nav a {
+  color: #555555;
+  display: block;
+  padding: 8px 14px;
+}
+
+#sidebar-nav a:hover {
+  background: #E9E9E9;
+}
