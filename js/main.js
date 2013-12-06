@@ -43,7 +43,7 @@ Gumby.ready(function() {
 			$window.load(function () {
 				setTimeout(function () {
 					$('#sidebar-nav .skip[href="#' + type + '"]').trigger("gumby.skip")
-				}, 200)
+				}, 100)
 			})
 		}
 		$("#sidebar-nav .skip").on("gumby.onComplete", function () {
@@ -89,7 +89,7 @@ Gumby.ready(function() {
 					var href = $activeLink.attr("href");
 					currentNav = href;
 					window.location.hash = "#!/" + href.substr(1, href.length - 1)
-				}, 200)
+				}, 100)
 		});
 		$("#sidebar-nav-holder.vertical-nav").on("gumby.onFixed", function () {
 			var $this = $(this),
