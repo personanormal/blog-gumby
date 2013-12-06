@@ -72,7 +72,8 @@ Gumby.ready(function() {
 						window.location.hash = "#!/";
 						clearTimeout(delay);
 						$sidebarNav.removeClass("active");
-						return
+						$sidebarNav.first().addClass("active");
+						return;
 					}
 					for (i; i < length; i++) {
 						var $target = $($targets[i]),
