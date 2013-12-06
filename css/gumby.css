@@ -2589,6 +2589,6 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 
 #sidebar-nav li.active a:hover { background: #3085d6; }
 
-#sidebar-nav a { color: #555555; display: block; padding: 8px 14px; }
+#sidebar-nav a { color: #555555; display: block; padding: 6px 10px; }
 
 #sidebar-nav a:hover { background: #E9E9E9; }
